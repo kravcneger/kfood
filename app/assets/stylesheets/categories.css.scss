@@ -1,0 +1,15 @@
+.sorter{
+	a{
+		text-decoration: none;
+		margin-right: 10px;
+	}
+	a.asc:after{
+		content: "▲";
+	}
+
+	a.desc:after{
+		content: "▼";
+	}
+
+	font-size: 12px;
+}

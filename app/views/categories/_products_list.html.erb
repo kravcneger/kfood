@@ -1,0 +1,33 @@
+<% provide(:title, "#{@organization.name}") %>
+<% if @category.present? %>
+<div class="container-fluid page-header" style="margin: 5px 5px 15px 0px;">
+	<div class="col-xs-12 col-md-3">
+		<b><%=@category.name%></b>
+		<%=hidden_field_tag(:self_category_id, @category.id)%>
+		<%=hidden_field_tag(:self_category_order)%>
+	</div>
+	<div class="col-xs-12 col-md-7">
+		<div class="sorter">			
+			<a href="<%=view_products_path(@organization,@category, 'name')%>" class="name asc">По названию</a>
+			<a href="<%=view_products_path(@organization,@category, 'price')%>" class="price asc">По цене</a>
+			<a href="<%=view_products_path(@organization,@category, 'calories')%>" class="calories asc">По калорийности</a>
+		</div>
+	</div>
+	<div class="col-xs-12 col-md-2" style="padding-right: 10px;">
+		<% if available_control? %>
+		<a class="btn btn-default btn-sm" style="float:right;"  id="new_product" data-toggle="modal" href="<%=new_product_path%>" data-target="#myModal">+ добавить продукт</a>
+		<% end %>
+	</div>
+</div>
+<div class="row list-group gallery">
+	<% @products.each do |product| %>
+	<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4 col-md-offset-0">  
+		<%= render partial: 'products/product', locals: { product: product } %>
+	</div>
+	<% end %>
+</div>
+<% else %>
+<div class="page-header" style="text-align: center;">
+	<h1><small> Пока нет ни одной категории </small></h1>
+</div>
+<% end %>

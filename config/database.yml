@@ -1,0 +1,29 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: kfood_development
+  username: postgres
+  password: postgres
+  host: localhost
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  host: ec2-54-75-242-23.eu-west-1.compute.amazonaws.com
+  database: dasmiti0hdaivo
+  user: ue4boj24tera1s
+  port:  5592
+  password: p18sqvisi0mra8fl8459078rbor
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: kfood_test
+  username: postgres
+  password: postgres
+  host: localhost

@@ -1,0 +1,9 @@
+<li class="sub_item<%= sub_item.active ? '' : ' off' %>" data-addition_id="<%=sub_item.addition_id%>" data-id="<%=sub_item.id%>"><a data-toggle="tab">
+	<span class="title"><%=sub_item.name%> - <%=sub_item.price%></span>
+  <span class="inputs">
+  <%= text_field_tag "addition_name_#{sub_item.id}",sub_item.name, {name: "addition_name[#{sub_item.id}]", class: "addition_name"} %> - 
+  <%= text_field_tag "addition_price_#{sub_item.id}",sub_item.price, {name: "addition_price[#{sub_item.id}]", class: "addition_price"}%>
+  </span>
+	<span class="toolbar"></span>
+</a>
+</li>

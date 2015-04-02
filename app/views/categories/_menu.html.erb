@@ -1,0 +1,8 @@
+<div class="menu_tree bs-docs-sidebar navbar navbar-default">
+	<ul class="nav nav-pills nav-stacked bs-docs-sidebar" id="menu">	
+	<%= render partial: 'categories/list', locals:{ categories: categories } %>
+	</ul>
+</div>
+<% if available_control? %>
+<button style="margin:0 auto;" type="button" class="btn btn-default btn-sm new_cat" href="<%=new_category_path%>" data-toggle="modal" data-target="#myModal">+ Создать категорию</button>
+<% end %>

@@ -1,0 +1,59 @@
+<% provide(:title, "#{@organization.name}") %>
+<div class="info">
+	<div class="col-xs-12 col-md-8">
+		<div class="form-group">
+			<div class="page-header"><b>ИНФОРМАЦИЯ «<%=@organization.name%>» </b> 
+				<% if available_control? %>
+				<%= link_to 'Редактировать',edit_organization_path(@organization,'info'), style: 'font-size:12px;'%>	
+				<% end %>
+			</div>
+		</div>
+
+		<% if @organization.additional_information.present?%>
+		<div class="form-group">
+			<%= render partial: 'schedules/index', locals: {organization: @organization}%>
+		</div>
+		<% end %>
+
+		<% if @organization.contacts.present? %>
+		<div class="form-group">
+			<div class="page-header"><b>Контакты:</b><br /></div>
+			<ul style="font-size: 12px;font-weight: bold;">
+				<% @organization.contacts.split(',').each do |con|%>
+				<li><%=con%></li>
+				<%end%>
+			</ul>		
+		</div>
+		<%end%>
+
+		<% if @organization.description.present? %>
+		<div class="form-group">
+			<div class="page-header"><b>О ресторане:</b><br /></div>
+			<%=@organization.description%>
+		</div>
+		<% end %>
+	</div>
+
+	<div class="col-xs-12 col-md-4">
+		<% if @organization.map_code %>
+		<div class="page-header"><b></b><br /></div>
+		<% if available_control? %>
+		<%=link_to 'Удалить карту', destroy_map_organizations_path(@organization)%>
+		<% end %>
+		<div id="org_map"></div>
+		<script type="text/javascript" charset="utf-8" src="//api-maps.yandex.ru/services/constructor/1.0/js/?sid=<%=@organization.map_code%>&id=org_map"></script>
+		<% end %> 
+
+		<%if @organization.addresses.present? %>
+		<div class="form-group">
+			<div class="page-header"><b>Адреса:</b><br /></div>
+			<ul style="font-size: 12px;font-weight: bold;">
+				<% @organization.addresses.split(',').each do |ad|%>
+				<li><%=ad%></li>
+				<%end%>
+			</ul>		
+		</div>
+		<%end%>   
+
+	</div>
+</div>

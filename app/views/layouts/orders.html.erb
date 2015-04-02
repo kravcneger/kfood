@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title) %></title>
+	<%= stylesheet_link_tag    "application", media: "all" %>
+	<%= javascript_include_tag "organizations_show", media: "all" %>
+	<% if available_control? %>
+	<%= javascript_include_tag "admin", media: "all"%>
+	<%= javascript_include_tag "admin_#{params[:controller]}"%>
+	<% end %>
+	<%= csrf_meta_tags %>
+	<%= render 'layouts/organization_js_object'%>
+	<%= render 'layouts/shim' %>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+	<%= render 'layouts/header' %>	
+	<div class="container page" style="padding:10px 0;">
+		<%= yield %>
+	</div>
+</body>
+</html>

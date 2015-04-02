@@ -1,0 +1,17 @@
+<div class="form-group">
+	<%= f.label('notification_email', 'Почтовый адресс для оповещения о заказе')%>
+	<%= f.text_field('notification_email', class: 'form-control input-sm')%>
+</div>
+<div class="form-group">
+	<%= f.label('push_key1', 'User key для push уведомлений')%>
+	<%= f.text_field('push_key1', class: 'form-control input-sm', style: 'font-size:19px;')%>
+</div>
+<div class="form-group">
+	<%= f.label('push_key2', 'User key2 для push уведомлений')%>
+	<%= f.text_field('push_key2', class: 'form-control input-sm', style: 'font-size:19px;')%>
+</div>
+<div class="form-group">
+  <%= f.label(:premature_notification, 'За сколько часов оповещать о заказе ко времени')%>
+  <%= f.text_field(:premature_notification, class: 'form-control input-sm')%>
+</div>
+

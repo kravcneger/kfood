@@ -1,0 +1,62 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file.
+//
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+//= require jquery
+//= require jquery_ujs
+//= require bootstrap
+//= require bootstrap/scrollspy
+//= require bootstrap/modal
+//= require bootstrap/dropdown
+//= require moment
+//= require bootstrap-datetimepicker
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
+//= require ./kfood.js
+//= require ./products_module.js
+//= require ./counter.js
+//= require ./basket.js
+//= require ./user_order.js
+//= require ./helpers.js
+//= require jquery.inputmask
+//= require jquery.inputmask.extensions
+//= require jquery.inputmask.numeric.extensions
+//= require jquery.inputmask.date.extensions
+//= require_directory ./backbone/routers
+//= require libs/simply-toast
+
+$(function(){	
+	window.app_router = new Kfood.Routers.AppRouter;	
+	Backbone.history.start({pushState: true});
+
+	$('#menu li').on('click', function(e){
+		e.stopPropagation();
+		var href = $('a:first',this).attr('href');
+		try{
+			window.app_router.navigate(href, true);		
+		}
+		catch(e){
+			window.location = href;
+		}
+		e.preventDefault();
+	});
+
+	$(document).on('click','.sorter a', function(e){
+		e.stopPropagation();
+		var href = $(e.target).attr('href');
+		window.app_router.navigate(href, true);	
+		return false;
+	});
+
+	$('#basket_panel').followTo($('.footer').height());
+});

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= yield(:title) %></title>
+	<%= stylesheet_link_tag    "application", media: "all" %>
+	<%= javascript_include_tag "organizations_show", media: "all" %>
+	<% if available_control? %>
+	<%= javascript_include_tag "admin", media: "all"%>
+	<%= javascript_include_tag "admin_#{params[:controller]}"%>
+	<% end %>
+	<%= csrf_meta_tags %>
+	<%= render 'layouts/organization_js_object'%>
+	<%= render 'layouts/shim' %>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+	<%= render 'layouts/modal' %>
+	<%= render 'layouts/header' %>
+	<div class="container page">
+		<div class="row well organization_header">
+			<div class="col-xs-12 col-sm-4 col-md-2 text-center avatar container-fluid">
+				<div class="col-xs-12 col-md-12"  style="padding: 4px;line-height: 1.428571429;background-color:white;border:1px solid #dddddd;border-radius: 4px">  
+					<%= image_tag @organization.avatar(:preview)%>	
+				</div>			
+			</div>
+			<div class="col-xs-12 col-sm-8 col-md-5 section-box">
+				<h2 style="display:inline-block;font-style: italic;">
+					<%=@organization.name%>
+				</h2>
+				<% if available_control? %>
+				<% unless @organization.published %>
+				<span style="font-size:13px;" class="label label-danger">заблокирован</span>
+				<% end %>
+				<% end %>
+				<table class="table organization_info col-xs-5 col-md-5">
+					<tr>
+						<%if @organization.min_delivery != 0 %><th><%=@organization.min_delivery%> руб.</th><%end%>
+						<th><%if @organization.delivery != 0 %><%=@organization.delivery%> руб.<%else%>БЕСПЛАТНО<%end%></th>
+						<%if @organization.free_shipping != 0 %><th><%=@organization.free_shipping%> руб.</th><%end%>		
+					</tr>
+					<tr>
+						<%if @organization.min_delivery != 0 %><td><small class="text-muted">мин. сумма заказа</small></td><%end%>
+						<td><small class="text-muted">стоимость доставки</small></td>
+						<%if @organization.free_shipping != 0 %><td><small class="text-muted">доставка бесплатна при заказе на</small></td><%end%>
+					</tr>							
+				</table>
+				<%= render 'layouts/organization_menu' %>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-4">
+				<% if @organization.additional_information.present? %>
+				<%= render partial: 'layouts/additional_info'%>	
+				<% else %>
+				<%= render partial: 'schedules/index', locals: {organization: @organization} %>	
+				<% end %>		
+			</div>
+		</div>
+		<div class="row">
+			<% flash.each do |key, value| %>
+			<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+			<% end %>
+		</div>
+		<div class="row" style="padding-bottom: 150px;">
+			<%= yield %>
+		</div>
+
+	</div>
+	<%= render partial: 'layouts/footer'%>	
+</body>
+</html>

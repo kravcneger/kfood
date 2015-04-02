@@ -1,0 +1,41 @@
+#myModal{
+	min-width: 240px;	
+	.modal-dialog{
+		@media all and (max-width: 400px) {
+			margin: 0;
+		}
+		.modal-body {
+			padding: 0;
+			& > div{
+				padding: 0;
+			}
+
+			@media all and (min-width: 400px) {
+				.col-xs-12 {
+					width: 50%;
+					margin-left: 25%;
+				}
+			}
+		}
+	}
+}
+
+#orderDialog{
+	min-width: 240px;	
+	.modal-dialog{
+		@media all and (max-width: 400px) {
+			margin: 0;
+			.modal-body {
+				padding: 0;
+			}
+		}
+	}
+}
+.centered-form{
+	margin-top: 60px;
+}
+
+.centered-form .panel{
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}

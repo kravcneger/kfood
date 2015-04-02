@@ -1,0 +1,48 @@
+<div class="container-fluid">
+	<div class="col-xs-12 col-sm-8 first-step">
+		<% @basket.products.each do |id, product|%>
+		<div class="container-fluid product_position" data-id="<%=id%>">
+			<div class="col-xs-1 col-sm-1">
+				<a class="remove_product" data-id="<%=id%>" href="<%=remove_product_organization_basket_index_path(@organization)%>">&times;</a>
+			</div>
+			<div class="col-xs-7 col-sm-6">
+				<span class="title"><%= product[:name] %></span>			
+				<% if product[:additionals].present? %>
+				<br />
+				<span class="additions">
+					<% product[:additionals].each do |a_id,add|%>
+					<small><%= add[:name]%> +<%= add[:price]%> руб.<span data-id="<%=a_id%>" class="glyphicon glyphicon-remove remove_addition"></span></small>
+					<%end%>
+				</span>
+				<%end%>
+			</div>
+			<div class="col-xs-3 col-sm-2">
+				<input type="number" min="1" max="99" value="<%=product[:count]%>" />
+			</div>
+			<div class="col-xs-4 col-xs-offset-8 col-sm-3 col-sm-offset-0">
+				<span class="price"><small><%= product[:all_price] / product[:count]%> руб.</small><br /><span><%= product[:all_price] %></span><span> руб.</span></span>
+			</div>
+		</div>
+		<%end%>
+	</div>
+	<div class="col-xs-8 col-xs-offset-1 col-sm-4 col-sm-offset-0">
+		<a class="clear_basket">Очистить корзину</a>	  
+		<div class="order_info">
+			<div>
+				<span> Сумма заказа: <b><%=@basket.price%></b> руб.</span>
+			</div>
+			<div>
+				<span> Стоимость доставки: <b><%=@basket.delivery%></b> руб.</span>
+			</div>
+			<div>
+				<h3> Итого: <b><%=@basket.price+@basket.delivery%></b> руб.</h3>
+			</div>
+			<div>
+				<button type="button" class="btn btn-success go-to-second-step">Оформить заказ</button>
+			</div>			
+		</div>
+		<% unless @organization.timetable.is_work? %>
+		<code style="display:block;"><small>В данный момент заведение не работает.Возможен только предзаказ.</small></code>
+		<% end %>
+	</div>
+</div>

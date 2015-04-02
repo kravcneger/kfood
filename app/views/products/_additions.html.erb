@@ -1,0 +1,32 @@
+<div class="additions_block">		
+	<%= form_tag(add_product_organization_basket_index_path(organization_id: @product.organization_id), remote: true) do %>
+	<%= hidden_field_tag :product_price , @product.price%>
+	<ul class="col-xs-12 col-md-12">	  
+		<%= hidden_field_tag :product_id , @product.id%>
+		<% @additions.each do |add| %>
+		<li class="col-xs-12 col-md-12">				
+			<label class="checkbox" for="addition_ids_<%=add.id%>">
+				<%=check_box_tag "addition_ids[]", add.id, false, :id => "addition_ids_#{add.id}" %>
+				<%= add.name %>						
+				<span class="price_addition"><i><%= add.price %></i> <i>руб.</i></span>		
+			</label>			
+		</li>
+		<% end %>
+	</ul>
+
+	<div class="col-xs-12 col-md-12">
+		<div class="col-xs-12 col-md-12">
+			<div class="price">Ингридиенты: <span><i>0</i> руб.</span></div>
+		</div>
+		<div class="col-xs-12 col-md-12">
+			<div class="total">Итого: <span><i><%=@product.price%></i> руб.</span></div>
+		</div>
+		<div class="col-xs-12 col-md-12">
+			<div class="counter"><input type="number" name="count" id="count" min="1" max="100" value="1"/>шт.</div>
+		</div>
+		<div class="col-xs-12 col-md-12" style="text-align:center;">
+			<input type="submit" class="btn btn-success btn-sm" value="Заказать" />
+		</div>
+	</div>
+	<% end %>
+</div>

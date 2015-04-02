@@ -1,0 +1,70 @@
+@import "variables";
+
+.menu_tree .nav-pills{ 
+	font-size: 13px;
+
+	li {
+		a {
+			display: inline-block;
+			width: 100%;
+			border-radius: 0;
+			border-top: 1px solid #dddddd;
+			color: #6c9504;
+			cursor: pointer;
+			.toolbar{
+				display: none;
+				& span{
+					float: right;
+				}
+			}
+			&:hover{
+				color: #6c9504;
+				.toolbar{
+					display: inline;
+				}	
+			}
+		}
+
+		&.active>a, &.active>a:link, &.active>a:visited{
+			background-color: $gray-lighter;
+			color: #6c9504;
+		}
+
+		&.off > a, &.active.off > a{
+			color: $brand-danger;
+			&:hover {				
+				color: $brand-danger;
+			}	
+		}
+		&.sub_item {
+			margin: 0;
+			border-top: none;
+			& a {
+				padding-left: 30px;
+				padding-top: 7px;
+				padding-bottom: 7px;
+			}			
+		}
+	}
+
+	.nav {
+		display: none;
+	}
+
+	.active>a {
+		&:hover {
+			background-color: $gray-lighter;
+			color: #6c9504;
+		}
+	}
+
+	.active>ul {
+		display: block;
+	}
+
+	.glyphicon{
+		padding-right: 5px;
+	}
+}
+
+

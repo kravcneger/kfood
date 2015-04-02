@@ -1,0 +1,100 @@
+<div class="col-xs-12 col-sm-8 second-step">
+	<%= form_for([@organization,@order], remote: true, html: { class: 'form-horizontal', style: 'font-size: 12px;'}) do |f| %>
+	<div class="form-group">
+		<div class="col-xs-12 col-sm-8 col-xs-offset-0 col-sm-offset-4 errors">
+
+		</div>
+		<%= f.label(:name, 'Имя', class: 'control-label col-xs-12 col-sm-4 required')%>
+		<div class="col-xs-12 col-sm-8">
+			<%= f.text_field(:name, class: 'form-control input-sm', placeholder: 'Имя')%>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label(:contact_phone, 'Контактный телефон', class: 'control-label col-xs-12 col-sm-4 required')%>
+		<div class="col-xs-12 col-sm-8">
+			<%= f.text_field(:contact_phone, class: 'form-control input-sm', placeholder: 'Контактный телефон')%>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label(:street, 'Улица', class: 'control-label col-xs-12 col-sm-4 required')%>
+		<div class="col-xs-12 col-sm-8">
+			<%= f.text_field(:street, class: 'form-control input-sm', placeholder: 'Улица')%>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label(:house, 'Дом', class: 'control-label col-xs-12 col-sm-4 required')%>
+		<div class="col-xs-12 col-sm-2">
+			<%= f.text_field(:house, class: 'form-control input-sm', placeholder: 'дом')%>
+		</div>
+		<%= f.label(:building, 'Корпус/строение', class: 'control-label col-xs-4 col-sm-4')%>
+		<div class="col-xs-12 col-sm-2">
+			<%= f.text_field(:building, class: 'form-control input-sm')%>
+		</div>			
+	</div>
+
+	<div class="form-group">
+		<%= f.label(:apartment, 'Квартира/офис', class: 'control-label col-xs-12 col-sm-4')%>
+		<div class="col-xs-12 col-sm-2">
+			<%= f.text_field(:apartment, class: 'form-control input-sm')%>
+		</div>
+		<%= f.label(:entrance, 'Подъезд', class: 'control-label col-xs-12 col-sm-4')%>
+		<div class="col-xs-12 col-sm-2">
+			<%= f.text_field(:entrance, class: 'form-control input-sm')%>
+		</div>			
+	</div>
+
+	<div class="form-group">
+		<%= f.label(:floor, 'Этаж', class: 'control-label col-xs-12 col-sm-4')%>
+		<div class="col-xs-12 col-sm-2">
+			<%= f.text_field(:floor, class: 'form-control input-sm')%>
+		</div>
+		<%= f.label(:access_code, 'Код домофона', class: 'control-label col-xs-12 col-sm-4')%>
+		<div class="col-xs-12 col-sm-2">
+			<%= f.text_field(:access_code, class: 'form-control input-sm')%>
+		</div>			
+	</div>
+
+	<div class="form-group">
+		<%= f.label(:renting, 'Нужна сдача с', class: 'control-label col-xs-12 col-sm-4')%>
+		<div class="col-xs-12 col-sm-2">
+			<%= f.text_field(:renting, class: 'form-control input-sm', placeholder: 'руб.')%>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<%= f.label(:order_time, 'Время и дата доставки', class: 'control-label col-xs-12 col-sm-4')%>
+		<div class="controls-row col-xs-12 col-sm-8 radio">
+			<label>
+				<input type="radio" name="order[to_checkbox]" value="0"/>
+				Доставка как можно скорее
+			</label>
+			<br />
+			<label>
+				<input type="radio" name="order[to_checkbox]" value="1"/>
+				Доставка ко времени:
+			</label>		
+		</div>
+		
+		<div class="row_order_to" style="display:none;">
+			<div class="col-xs-6 col-sm-3 col-xs-offset-0 col-sm-offset-4">
+				<%= select_tag('order[to_day]', options_for_select(days_ranger(7)), class: 'select-control', id: :order_to_day)%>
+			</div>
+			<div class="col-xs-3 col-sm-1" style="padding-left:15px;"> 
+				<%= select_tag('order[to_hours]', options_for_select((0..23).to_a.collect {|i| i < 10 ? ["0#{i}","0#{i}"] : ["#{i}","#{i}"]  }), id: :order_to_hours)%>
+			</div>
+			<div class="col-xs-3 col-sm-1">
+				<%= select_tag('order[to_minutes]', options_for_select((0..5).to_a.collect {|i| ["#{i}0","#{i}0"] }), id: :order_to_minutes)%>	
+			</div>		
+		</div>	
+	</div>
+	<div class="form-group">
+		<%= f.label(:comment, 'Комментария к заказу', class: 'control-label col-xs-12 col-sm-4')%>
+		<div class="col-xs-12 col-sm-8">
+			<%= f.text_area(:comment, class: 'form-control input-sm')%>
+		</div>
+	</div>
+	<%end%>
+</div>

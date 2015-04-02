@@ -1,0 +1,163 @@
+#basket_panel{
+	bottom: 0;
+  position: fixed;
+  
+	border: none;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border: 2px solid #e3e3e3;
+	color: #000;	
+	opacity: 1;	
+	min-width: 240px;
+	background-color: white;
+
+	.panel-body{
+		padding:5px;
+
+		@media all and (max-width: 500px) {
+			font-size: 12px;
+		}
+
+		@media all and (min-width: 500px) {
+			font-size: 16px;
+			& > div{
+				padding-top: 8px;
+			}
+
+			.icon{
+				float: left;
+				margin-top: -25px;
+				margin-right: 10px;
+				width: 50px;
+				height: 50px;
+				background: url('/assets/basket.png') no-repeat;
+				background-position: left top;
+				background-size: cover;
+			}
+
+			& > span{
+				margin-left: 10px;
+				font-size:12px;
+				color: #656565;
+			}
+			& > span > span.price{
+				color: #000;
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+a.open_basket{
+	float: right;	
+}
+
+#custom{	
+	z-index: 2500;
+	.container-fluid{
+		padding: 0;
+	}
+
+	@media all and (max-width: 500px) {
+		font-size: 11px;
+		.first-step{
+			padding: 0;
+		}
+		.modal-dialog{
+			min-width: 240px;		
+			width: 100%;
+			padding: 0;
+			margin: 0;
+		}
+		.modal-body{
+			padding: 5px 3px;
+		}
+
+		.product_position{
+			height: auto;
+			font-size: 12px;
+			margin-top: 5px;
+			div{
+				padding: 2px;
+			}
+		}
+		a.remove_product{
+			font-size: 18px;
+		}		
+
+		.order_info h3{
+			font-size: 16px;
+		}
+	}
+
+	@media all and (min-width: 500px) {
+		.modal-dialog{
+			min-width: 450px;	
+			width: 90%;	
+			max-width: 1150px;
+		}
+		.product_position{
+			height: auto;
+			font-size: 14px;
+			margin-top: 15px;
+		}
+		a.remove_product{
+			font-size: 24px;
+		}
+	}
+
+	.product_position{
+		&:not(:first-child){
+			padding-top: 10px;
+			border-top: 1px solid #d9d9da;
+		}
+		
+		&:last-child{
+			padding-bottom: 10px;
+			border-bottom: 1px solid #d9d9da;
+		}
+
+		a.remove_product{
+			line-height: 0.8;			
+			font-weight: 800;
+			color: #808080;
+			text-decoration: none;
+		}
+
+		.title{		
+			color: black;
+		}
+
+		.additions {
+			small{
+				display: inline-block;
+				width: 100%;
+				font-size: 11px;
+				color: #787d71;
+				font-style: italic;
+			}
+		}
+
+		input[type='number']{
+			width: 40px;
+			height: 22px;
+		}
+
+		.price{
+
+		}
+	}
+
+	.order_info{
+		color: #545454;
+		b{
+			color: black;
+			font-weight: normal;
+		}
+	}
+
+	input.input-sm[type='text']{
+		padding: 5px 5px; 
+	}
+
+}

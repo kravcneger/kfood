@@ -1,0 +1,41 @@
+<div class="organization_list_cards">
+	<div class="container">
+		<% @organizaztions.sort_by{ rand }.each do |org| %>
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<div class="info-card">
+				<%= image_tag org.avatar(:thumb) %>
+				<div class="info-card-details animate">
+					<div class="[ info-card-header ]">
+						<h1> <%=org.name%> </h1>
+					</div>
+					<div class="info-card-detail">		
+						<div style="padding:0 15px;text-align: center;">		
+							<%= render partial: 'schedules/index', locals: {organization: org}%>
+						</div>
+						<div class="social">
+							<% if org.social_networks %>
+							<% if org.social_networks["vk"].present? %>
+							<a href="https://www.vk.com/<%=org.social_networks["vk"]%>" class="social-icon vkontakte animate"><span class="fa fa-vk"></span></a>
+							<% end %>
+
+							<% if org.social_networks["fb"].present? %>
+							<a href="https://www.facebook.com/<%=org.social_networks["fb"]%>" class="[ social-icon facebook ] animate">  <span class="fa fa-facebook"></span></a>
+							<% end %>
+
+							<% if org.social_networks["twitter"].present? %>
+							<a href="https://twitter.com/<%=org.social_networks["twitter"]%>" class="[ social-icon twitter ] animate"><span class="fa fa-twitter"></span></a>
+							<% end %>	
+							<% end %>				
+						</div>
+					</div>
+					<div style="margin-top: 5px;">
+						<%= link_to 'Перейти в меню',organization_path(org), class: "btn btn-warning"%>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% end %>
+		<div>
+			<div>		
+
+

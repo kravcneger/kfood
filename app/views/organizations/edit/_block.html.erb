@@ -1,0 +1,9 @@
+<div class="checkbox">	
+	<label style="font-size: 13px;font-weight: bold;">
+		<%= f.check_box(:published,{ checked: !f.object.published }, 'false','true')%>Заблокировать магазин
+	</label>
+</div>
+<div class="form-group">
+	<%= f.label(:message_block, 'Сообщение для пользователей')%>
+	<%= f.text_area(:message_block, class: 'form-control input-sm')%>
+</div>

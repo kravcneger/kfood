@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="cover-container">
+    <div class="inner cover">
+      <h1 class="cover-heading">В данный момент ресторан не работает.</h1>
+      <%if @organization.message_block.present? %>
+      <p class="lead"><%=@organization.message_block%></p>
+      <%end%>
+      <p class="lead">
+        <a href="<%=root_path%>" class="btn btn-lg btn-default">Выбрать другой ресторан</a>
+      </p>
+    </div>
+  </div>
+</div>

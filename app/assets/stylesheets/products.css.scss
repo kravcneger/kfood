@@ -1,0 +1,123 @@
+@import "variables";
+
+.product{  
+  position: relative;
+  .toolbar{
+    position:absolute;
+    right:5px;
+    top:5px;
+    display: none;
+    color: #6c9504;
+    background-color: $gray-lighter;
+    border-radius: 20%;
+    padding: 5px;
+    span{
+      cursor: pointer;
+    }
+  }
+  &:hover{
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(130, 130, 130, 0.35);
+    .toolbar{
+      display: inline;      
+    }
+  }
+
+  .addition{
+    text-align:center;
+    height: 15px;
+    font-size: 13px;
+  }
+
+  .content {
+    overflow: hidden;
+    line-height: 1;    
+    font-style: italic;
+
+    @media all and (max-width: 500px) {
+      text-align: center;
+      padding: 2px 2px; 
+      font-weight: bold;     
+    }
+
+    @media all and (min-width: 500px) {
+      padding: 2px 10px;
+      height: 31px;
+    } 
+
+    .description{  
+      font-weight: normal;    
+      @media all and (max-width: 768px) {
+        display: block;
+      }
+      @media all and (min-width: 768px) {
+        display: none;
+      }      
+    }
+  }
+
+  .order {
+    height: 40px;
+    padding: 5px 10px;
+    .price {
+      float: left;
+      padding-top: 5px;
+      font-size: 16px;
+      color: #000;
+      font-weight: normal;
+      font-family: OsnovaProNormal, Arial, sans-serif;
+    } 
+
+    button{
+      float:right;
+      &.btn-info,&.btn-danger{
+        font-size: 11px;
+        padding: 5px 2px;
+      }
+    }
+
+    .count{
+      float: right;
+      margin-right: 8px;
+      padding-top: 7px;
+      font-size: 11px;      
+      color: #666;
+      border-bottom: 1px #666 dotted;
+      cursor: pointer;
+    }  
+
+
+  }
+
+  .post-img-content {
+    text-align: center;
+    overflow: hidden;
+    margin-right: auto;
+    margin-left: auto;
+    @media all and (max-width: 500px) {
+      height: 80px;
+      line-height: 80px;
+      width: 40%;
+      img{
+        max-height: 80px;
+      }
+    }
+
+    @media all and (min-width: 500px) {
+      height: 170px;
+      line-height: 170px;
+      width: 70%;
+      img{
+        max-height: 170px;
+        max-width: 170px;
+      }
+    }
+
+    img{
+      overflow: hidden;
+    }
+  }
+
+  .glyphicon{
+    padding: 3px;
+  }
+}

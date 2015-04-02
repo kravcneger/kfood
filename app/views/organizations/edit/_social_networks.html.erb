@@ -1,0 +1,15 @@
+<div class="form-group">
+	<%= f.label(:organization_social_networks_vk, 'Вконтакте')%>
+	<%= f.text_field(:social_networks, value: f.object.social_networks && f.object.social_networks["vk"] ? f.object.social_networks["vk"] : '', id: :organization_social_networks_vk, name: 'organization[social_networks][vk]', class: 'form-control input-sm')%>
+</div>
+
+<div class="form-group">
+	<%= f.label(:organization_social_networks_fb, 'Facebook')%>
+	<%= f.text_field(:social_networks, value: f.object.social_networks && f.object.social_networks["fb"] ? f.object.social_networks["fb"] : '', id: :organization_social_networks_fb, name: 'organization[social_networks][fb]', class: 'form-control input-sm')%>
+</div>
+
+<div class="form-group">
+	<%= f.label(:organization_social_networks_twitter, 'Twitter')%>
+	<%= f.text_field(:social_networks, value: f.object.social_networks && f.object.social_networks["twitter"] ? f.object.social_networks["twitter"] : '', id: :organization_social_networks_twitter, name: 'organization[social_networks][twitter]', class: 'form-control input-sm')%>
+</div>
+

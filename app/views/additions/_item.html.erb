@@ -1,0 +1,13 @@
+<li<% unless addition[:item].active%> class="off"<%end%> data-addition_id="<%=addition[:item].addition_id%>" data-id="<%=addition[:item].id%>"><a data-toggle="tab" >
+<span class="title"><%=addition[:item].name%></span>
+<span class="inputs"><%=text_field_tag "addition_name_#{addition[:item].id}",addition[:item].name, {name: "addition_name[#{addition[:item].id}]", class: "addition_name"}%></span>
+
+<span class="toolbar"></span>
+<% if addition[:children].any? %><span style="float:right;" class="glyphicon glyphicon-chevron-up"></span><%end%>
+</a>
+<% if addition[:children].any? %>
+<ul class="nav">
+<%= render partial: 'additions/sub_item', collection: addition[:children] %>
+</ul>
+<% end %>
+</li>

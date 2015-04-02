@@ -1,0 +1,178 @@
+<% provide(:title, "Заказы #{@organization.name}") %>
+<div class="col-xs-12 col-sm-3">
+  <ul class="nav nav-pills nav-stacked">
+    <li<%=' class=active ' if @type == nil%>>
+    <%=link_to orders_path,{} do%>
+    Все заказы<span class="badge pull-right"></span>
+    <%end%>
+    </li>
+    <li<%=' class=active ' if @type == 'time_order'%>>
+    <%=link_to orders_path(type: 'time_order'), {} do %>
+    Ко времени<span class="badge pull-right"></span>
+    <%end%>
+    </li>
+    <li<%=' class=active ' if @type == 'basket'%>>
+    <%=link_to 'Корзина', orders_path(type: 'basket') %></li>     
+  </ul>
+</div>
+
+<div class="col-xs-12 col-sm-9 list_orders">
+  <% if @type == 'basket' %>
+  <h4> Заказы из корзины удалятся автоматически в течении нескольких минут.</h4>
+  <% end %>
+  <div>        
+    <table class="table table-bordred orders">
+     <thead>
+       <th>#</th>
+       <th>Телефон</th>
+       <th>Сумма</th>
+       <th>К какому времени</th>
+       <th>Статус</th>
+       <th class="">Подробнее</th>
+       <th></th>
+     </thead>
+     <tbody>
+       <%= render partial: 'order', :collection => @orders, as: :o %>
+     </tbody>        
+   </table>
+
+   <div class="clearfix"></div>
+   <%= will_paginate @orders %>
+ </div>
+</div>
+
+
+<div class="modal fade" id="orderDialog" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title custom_align" id="Heading">Просмотр заказа</h4>
+      </div>
+      
+      <div class="modal-body admin_order">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active"><a href="#order-data" role="tab" data-toggle="tab">Данные</a></li>
+          <li><a href="#products-data" role="tab" data-toggle="tab">Список продуктов</a></li>
+        </ul>
+        
+        <%= form_tag("/admin_orders", id: 'admin_order', remote: true, method: "put", class: 'form-horizontal') do %>
+        <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-2">
+          <div class="form-group errors">
+
+          </div>
+        </div>
+        <div class="container-fluid" style="padding-top:10px;">
+          <div class="tab-content">
+            <div class="tab-pane active" id="order-data">
+              <div class="form-group">
+                <%= label_tag(:name, 'Имя клиента', class: 'control-label col-xs-12 col-sm-4 required')%>
+                <div class="col-xs-12 col-sm-8">
+                  <%= text_field_tag(:name, '', class: 'form-control input-sm')%>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= label_tag(:contact_phone, 'Контактный телефон', class: 'control-label col-xs-12 col-sm-4 required')%>
+                <div class="col-xs-12 col-sm-8">
+                  <%= text_field_tag(:contact_phone, '', class: 'form-control input-sm')%>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= label_tag(:street, 'улица', class: 'control-label col-xs-12 col-sm-4 required')%>
+                <div class="col-xs-12 col-sm-8">
+                  <%= text_field_tag(:street, '', class: 'form-control input-sm')%>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= label_tag(:house, 'Дом', class: 'control-label col-xs-12 col-sm-4 required')%>
+                <div class="col-xs-12 col-sm-2">
+                  <%= text_field_tag(:house, '', class: 'form-control input-sm')%>
+                </div>
+                <%= label_tag(:building, 'Корпус/строение', class: 'control-label col-xs-12 col-sm-4')%>
+                <div class="col-xs-12 col-sm-2">
+                  <%= text_field_tag(:building, '', class: 'form-control input-sm')%>
+                </div>      
+              </div>
+
+              <div class="form-group">
+                <%= label_tag(:apartment, 'Квартира/офис', class: 'control-label col-xs-12 col-sm-4')%>
+                <div class="col-xs-12 col-sm-2">
+                  <%= text_field_tag(:apartment, '', class: 'form-control input-sm')%>
+                </div>
+                <%= label_tag(:entrance, 'Подъезд', class: 'control-label col-xs-12 col-sm-4')%>
+                <div class="col-xs-12 col-sm-2">
+                  <%= text_field_tag(:entrance, '', class: 'form-control input-sm')%>
+                </div>      
+              </div>
+
+              <div class="form-group">
+                <%= label_tag(:floor, 'Этаж', class: 'control-label col-xs-12 col-sm-4')%>
+                <div class="col-xs-12 col-sm-2">
+                  <%= text_field_tag(:floor, '', class: 'form-control input-sm')%>
+                </div>
+                <%= label_tag(:access_code, 'Код домофона', class: 'control-label col-xs-12 col-sm-4')%>
+                <div class="col-xs-12 col-sm-2">
+                  <%= text_field_tag(:access_code, '', class: 'form-control input-sm')%>
+                </div>      
+              </div>
+
+              <div class="form-group">
+                <%= label_tag(:renting, 'Нужна сдача с', class: 'control-label col-xs-12 col-sm-4')%>
+                <div class="col-xs-12 col-sm-2">
+                  <%= text_field_tag(:renting, '', class: 'form-control input-sm')%>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <%= label_tag(:time_order, 'К какому времени', class: 'control-label col-xs-12 col-sm-4')%>
+                <div class="col-xs-12 col-sm-4">
+                  <div class="input-group date time_order" data-date-format="YYYY-MM-DD HH:mm">
+                    <%= text_field_tag(:time_order, '', onClick: "$(this).select();", class: 'form-control input-sm')%>
+                    <span class="input-group-addon" style="cursor:pointer;"><span class="glyphicon-calendar glyphicon">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= label_tag(:comment, 'Комментария к заказу', class: 'control-label col-xs-12 col-sm-4')%>
+                  <div class="col-xs-12 col-sm-8">
+                    <%= text_area_tag(:comment, '', class: 'form-control input-sm')%>
+                  </div>
+                </div>
+
+              </div>
+              <div class="tab-pane" id="products-data">
+                <div class="form-group">
+                  <div class="list-group">
+                    <div data-toggle="dropdown" class="col-xs-12 col-xs-offset-0  col-sm-6 col-sm-offset-3 input-group custom-search-form">
+                      <%= text_field_tag(:search_product, '', class: 'form-control', placeholder: "Добавить продукт")%>
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                          <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                      </span>                    
+                    </div>
+                    <div id="search_result" class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-3 input-group">
+                    </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-11 col-xs-offset-0 col-sm-offset-1" id="order_products">
+                  </div>
+                </div>              
+              </div>
+            </div>
+          </div>        
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Сохранить изменения</button>
+        </div>
+        <%end%>
+      </div>
+    </div>
+    <!-- /.modal-content --> 
+  </div>
+  <!-- /.modal-dialog --> 
+

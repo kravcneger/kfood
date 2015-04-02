@@ -1,0 +1,17 @@
+table.timetable.table *{
+	padding: 0px;
+	font-size: 13px;
+	border: none;
+	color: #878787;
+}
+
+table.timetable tbody td:first-child{
+	font-weight: bold;  
+}
+
+table.timetable.table{
+	margin-bottom:2px;
+	tr{
+		border-bottom: 1px solid #eeeeee;
+	}
+}

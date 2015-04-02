@@ -1,0 +1,16 @@
+<div class="form-group">
+  <%= f.label(:current_password, 'Текущий пароль*', style: "color:red;")%>
+  <%= f.password_field(:current_password, class: 'form-control input-sm')%>
+</div>
+<div class="form-group">
+  <%= f.label(:email, 'Адрес электронной почты для входа*')%>
+  <%= f.email_field(:email, class: 'form-control input-sm')%>
+</div>
+<div class="form-group">
+  <%= f.label(:password, 'Новый пароль')%>
+  <%= f.password_field(:password, class: 'form-control input-sm')%>
+</div>
+<div class="form-group">
+  <%= f.label(:password_confirmation, 'Подтверждение пароля нового')%>
+  <%= f.password_field(:password_confirmation, class: 'form-control input-sm')%>
+</div>

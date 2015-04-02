@@ -1,0 +1,54 @@
+<tr class="ord <%=o.viewed? ? '': 'active'%>" data-id="<%=o.id%>">
+  <td class="name"><%=o.id%></td>
+  <td class="contact_phone"> <%=o.contact_phone%></td>
+  <td><%=o.price%> руб.</td>
+  <td>
+    <%if o.time_order%>
+    <% if o.time_order > (Time.now + current_organization.premature_notification.hours) %>
+       <b><%="#{o.time_order.strftime('%H:%M')}"%></b>
+    <% else %>
+    <% t = o.time_order %>
+    <%="#{I18n.t('date.abbr_day_names')[t.wday]} #{t.strftime('%m-%d   %H:%M')}"%>
+    <%end%>
+    <%end%>
+  </td>
+  <td>
+    <% if @type != 'basket' %>
+    <% st = ''%>
+    <% ms = ''%>
+    <% if o.status == 0 %>            
+    <% st = 'btn-danger'%>
+    <% ms = 'Не просмотрен'%>
+    <% elsif o.status == 1 %>   
+    <% st = 'btn-info'%>
+    <% ms = 'Принят'%>
+    <% elsif o.status == 2 %>
+    <% st = 'btn-success'%>
+    <% ms = 'Выполнен'%>
+    <% end %>
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-xs dropdown-toggle <%=st%>" data-toggle="dropdown">
+        <span class="text"><%=ms%></span> <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu status" role="menu">
+        <li data-status="0"><a>Не просмотрен</a></li>
+        <li data-status="1"><a>Принят</a></li>
+        <li data-status="2"><a>Выполнен</a></li>
+      </ul>
+    </div>
+    <% else %>
+    удалён
+    <% end %>
+  </td>
+  <td class="more"><a class="btn btn-primary btn-xs glyphicon glyphicon-folder-open" href="<%=order_path(o)%>"></a></td>
+
+  <td>
+    <p>
+      <% if @type != 'basket' %>
+      <button class="btn btn-danger btn-xs destroy" data-toggle="tooltip" data-placement="top" title="Удалить"><span class="glyphicon glyphicon-trash"></span></button>
+      <% else %>
+      <button class="btn btn-info btn-xs restore" data-toggle="tooltip" data-placement="top" title="Востановить"><span class="glyphicon glyphicon-share-alt"></span></button>
+      <% end %>
+    </p></td>
+  </tr>

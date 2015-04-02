@@ -1,0 +1,26 @@
+<table class="table timetable">
+	<thead>
+		<tr>
+			<th style="text-align:center;" colspan="2"><span class="glyphicon glyphicon-time"></span> График работы 
+				<% if available_control? %> <a style="font-size:11px;color:#428bca;" class="edit_timetable" data-toggle="modal" data-target="#myModal" href="<%=edit_schedule_path(id: current_organization.id)%>">ред.</a>
+				<% end %>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+	  <% timetable = organization.timetable.get_table %>
+	  <% timetable[6] = timetable.shift %>
+		<% timetable.each_with_index do |day,i| %>
+		<tr>
+			<td style="width:5%;padding-right:20px;"><%=I18n.t(:"date.abbr_day_names")[i == 6 ? 0 : i + 1 ]%>.  </td>
+			<% if day == false %>
+			<td style="color:red;">Выходной</td>
+			<% elsif day == nil %>
+			<td style="color: #6c9504;">Круглосуточно</td>
+			<% else %>
+			<td><span style="font-weight: normal;color: black;"><%=day%></span></td>
+			<% end %>
+		</tr>
+		<% end %>
+	</tbody>											
+</table>	

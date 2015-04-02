@@ -1,0 +1,48 @@
+
+<% flash.each do |key, value| %>
+<%= content_tag(:div, value, class: "alert alert-#{key == :notice ? 'success' : 'danger'}") %>
+<% end %>	
+<div class="container">
+<div class="col-sm-4 col-sm-offset-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-lock"></span> Вход в панель</div>
+				<div class="panel-body">
+					<%= form_for(resource, url: session_path(resource_name), html:{class: 'form-horizontal',:as => resource_name}) do |f| %>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-3 control-label">
+							Email</label>
+							<div class="col-sm-9">
+								<%= f.email_field :email, :autofocus => true, placeholder: "Почта", class: "form-control" %>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-3 control-label">
+								Пароль</label>
+								<div class="col-sm-9">
+									<%= f.password_field :password, class: "form-control", placeholder: "Пароль" %>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-9">
+									<div class="checkbox">
+										<label>
+											<%= f.check_box :remember_me %> <%= f.label 'Запомнить' %>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group last">
+								<div class="col-sm-offset-3 col-sm-9">
+									<%= f.submit "Войти", class: "btn btn-success btn-sm", id: "sign_in" %>
+									<button type="reset" class="btn btn-default btn-sm">
+										Сбросить</button>
+									</div>
+								</div>
+								<% end %>
+							</div>
+							<div class="panel-footer">
+								<%= render "devise/shared/links" %></div>
+							</div>
+						</div>
+					</div>

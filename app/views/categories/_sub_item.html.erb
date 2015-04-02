@@ -1,0 +1,4 @@
+<li class="sub_item<%= sub_item.active ? '' : ' off' %>" data-category_id="<%=sub_item.category_id%>" data-id="<%=sub_item.id%>" data-ordering="<%=sub_item.ordering%>"><a data-toggle="tab" href="<%=view_products_path(id: @organization,category_id: sub_item.id)%>">
+	<span class="title"><%=sub_item.name%></span><span class="toolbar"></span>
+</a>
+</li>

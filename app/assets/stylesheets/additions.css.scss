@@ -1,0 +1,82 @@
+#additions{
+	.inputs{
+		display: none;
+
+		.addition_name{
+			width: 100px;
+		}
+		.addition_price{
+			width: 30px;
+		}	  
+	}
+}
+
+.additions_block{
+	color: #6C9504;
+	margin-left: -10px;
+
+	div.row > div{
+		height: 20px;
+	}
+
+	ul{
+		list-style-type: none;
+	}
+
+	.checkbox{ 
+		margin: 0;
+		padding-left: 0px;
+		font-size: 12px;
+		font-style: normal;	
+
+		input[type='checkbox']{
+			float: left;
+			margin-left: 0;
+			margin-right: 7px;
+		}
+
+		.price_addition{
+			float: right;      
+			margin-right: 2px;
+			color: #7C7C7C;
+		}
+	}
+
+	div.price, div.total{
+		float:left;
+		margin-left: 10px;		
+		color: #545454;
+		@media all and (max-width: 500px) {
+			font-size: 13px;	
+			margin-top: 2px;
+		}
+		@media all and (min-width: 500px) {
+			font-size: 15px;	
+			margin-top: 5px;
+		}		
+		span{
+			color: black;
+			i{
+				font-style:normal;
+			}
+		}	
+	}
+
+
+	div.counter{
+		margin-top:3px;
+		padding-left: 10px;
+		input{
+			width: 40px;
+		}
+	}
+
+	input.btn{
+		margin-top:8px;
+		margin-bottom:8px;
+	}
+}
+
+small.product_additions{
+	cursor: pointer;
+}

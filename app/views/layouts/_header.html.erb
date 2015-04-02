@@ -1,0 +1,16 @@
+<header class="navbar navbar-inverse navbar-static-top" role="banner" style="opacity:0.6;">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="<%=root_path%>" style="color:white;">Glazov-food</a>
+		</div>
+		<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+			<ul class="nav navbar-nav">
+				<li>
+					<% if organization_signed_in? %>
+					<%= link_to 'Выход', destroy_organization_session_path, id: 'sign_out', method: :delete%>
+					<%end%>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</header>

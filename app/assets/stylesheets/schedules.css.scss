@@ -1,0 +1,48 @@
+// Place all the styles related to the Schedules controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.time_table_edit{
+	@media all and (max-width: 500px) {
+		font-size: 11px;
+		input[type='text']{
+			margin: 1px;
+			width: 35px;
+		}
+	}
+	@media all and (min-width: 500px) {
+		font-size: 13px;
+		input[type='text']{
+			margin: 1px;
+			width: 45px;
+		}
+	}	
+
+	span.new{
+		input[type='text']{
+			color: #4f9fcf;
+		}
+	}
+
+	span.changed{
+		input[type='text']{
+			color: #4f9fcf;
+		}
+	}
+
+	span.invalid{
+		input[type='text']{
+			color: red;
+		}
+	}
+
+	.glyphicon{
+		margin-right: 3px;
+	}
+
+	.glyphicon-remove{
+		margin-right: 3px;
+	}
+
+}
+

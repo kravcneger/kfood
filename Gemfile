@@ -1,0 +1,72 @@
+source 'https://rubygems.org'
+ruby '2.0.0'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.0.9'
+
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.1.0'
+
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+
+# Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.0.0'
+
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', platforms: :ruby
+
+# Use jquery as the JavaScript library
+gem 'jquery-rails', '~> 3.1.0'
+
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks', '~> 1.3.1'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 1.2'
+gem 'unicorn'
+gem 'devise', '3.2.2'
+gem 'pg'
+gem 'rails-backbone', '~> 1.1.0', :git => 'https://github.com/codebrew/backbone-rails.git'
+gem 'ejs'
+gem 'rails-i18n', '~> 4.0.0'
+gem 'momentjs-rails', '~> 2.5.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
+gem 'paperclip', '~> 3.5.4'
+gem 'remotipart', '~> 1.2'
+gem 'jquery-inputmask-rails', '~> 2.5.5'
+gem 'will_paginate', '~> 3.0'
+gem 'ffaker'
+gem 'factory_girl_rails'
+
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
+end
+
+gem 'rails_12factor', group: :production
+gem 'dalli', group: :production
+gem 'aws-sdk', group: :production
+gem 'pushover', group: :production
+
+group :development, :test do
+	gem 'rspec-rails', '~> 3.0.0.beta'	
+	gem 'capybara'
+	gem 'selenium-webdriver'
+	# gem 'capybara-webkit', github: 'mhoran/capybara-webkit', branch: 'breakpad', submodules: true
+	gem 'database_cleaner'	
+	gem 'shoulda'
+	gem 'shoulda-matchers'	
+	gem 'email_spec'	
+end
+# Use ActiveModel has_secure_password
+gem 'bcrypt'
+
+# Use unicorn as the app server
+# gem 'unicorn'
+
+# Use Capistrano for deployment
+# gem 'capistrano', group: :development
+
+# Use debugger
+# gem 'debugger', group: [:development, :test]

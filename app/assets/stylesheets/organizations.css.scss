@@ -1,0 +1,85 @@
+ .section-box h2 {
+   margin-top: 0px;
+ }
+
+ .section-box h2 a {
+   font-size: 15px;
+ }
+
+ div.organization_header {
+   background-color: white;
+   border: none;
+   border-top-left-radius: 4px;
+   border-top-right-radius: 4px;
+   border-bottom-left-radius: 0px;
+   border-bottom-right-radius: 0px;
+   border-bottom: 2px solid #e3e3e3;
+   
+   .avatar{
+     padding: 5px;
+     margin-top: 10px;
+     & > div > img{
+       height: none;
+       @media all and (max-width: 500px) {
+         max-width: 70px;
+         max-height: 70px;
+       }
+
+       @media all and (min-width: 500px) {
+         max-width: 130px;
+         max-height: 130px;
+       }        
+     }
+   }
+ }
+
+ ul.top-menu{
+   margin-bottom: 0;
+   padding-left: 0;
+   list-style: none;
+   li{ 
+     float: left;
+     position: relative;
+     display: block;
+   }
+   li a{
+    @media all and (max-width: 500px) {
+      padding: 5px 5px;
+    }
+
+    @media all and (min-width: 500px) {
+      padding: 10px 15px;
+    } 
+
+    position: relative;
+    display: block;    
+    color: #6c9504;
+    font-weight: bold;
+  }
+  li.active a{
+   text-decoration: underline;
+ }   
+}
+
+table.organization_info.table * {
+ border: none;
+ padding: 0;
+}
+
+.form-inline .form-group {
+ margin-right: 10px;
+}
+
+.well-primary {
+ color: rgb(255, 255, 255);
+ background-color: rgb(66, 139, 202);
+ border-color: rgb(53, 126, 189);
+}
+
+.organization_form_edit{
+ .form-group{
+   label{
+     font-size: 12px;
+   }
+ }
+}

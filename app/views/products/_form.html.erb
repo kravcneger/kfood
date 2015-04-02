@@ -1,0 +1,82 @@
+<%= form_for(@product, :html => { :multipart => true, id: 'product_form' }, :remote => true ) do |f| %>
+<div class="form-group errors" style="line-height: 1;">
+
+</div>
+
+<div class="form-group">
+	<% if !@product.new_record? %>
+	<%= f.hidden_field(:id) %>
+	<% end %>
+	<div class="thumbnail avatar">	  
+		<% if @product.new_record? || !@product.avatar.file? %>	
+		<%= f.file_field(:avatar) %>
+		<% else %>
+		<div class="upload_file" style="display:none;">
+			<span style="float:right;margin-right: 5px;cursor:pointer;" data-toggle="tooltip" class="glyphicon glyphicon-refresh refresh_image"></span><br />
+			<%= f.file_field(:avatar) %>
+		</div>
+		<div class="uploaded_file" >
+			<%= render partial: 'products/avatar', locals: {f: f}%>	
+		</div>
+		<% end %>
+	</div>	
+</div>
+
+<div class="form-group">
+	<%= f.object.new_record? ? '' : f.hidden_field(:id)%>
+	<%= f.select(:category_id, CategoriesHelper::list_options_tree(current_organization.get_menu('all')).insert(0,['Выберите Категорию',0]),{}, {class: 'form-control input-sm'}) %>
+</div>
+
+<div class="form-group">
+	<%= f.label(:name, 'Название продукта*')%>
+	<%= f.text_field(:name, class: 'form-control input-sm')%>
+</div>
+
+<div class="form-group">
+	<%= f.label(:price, 'Стоимость*')%>
+	<%= f.text_field(:price, class: 'form-control input-sm')%>
+</div>
+
+<div class="form-group">
+	<%= f.label(:description, 'Ингридиенты')%>
+	<%= f.text_area(:description, class: 'form-control input-sm', placeholder: 'Ингридиенты')%>
+</div>
+
+<div class="form-group">
+	<%= f.label(:weight, 'Масса в граммах.')%>
+	<%= f.text_field(:weight, class: 'form-control input-sm')%>
+</div>
+<div class="form-group">
+	<%= f.label(:calories, 'Ккал на 100 грамм.')%>
+	<%= f.text_field(:calories, class: 'form-control input-sm')%>
+</div>
+
+<div class="form-group">
+	<%= f.label(:addition_id, 'Добавки к продукту')%>
+	<%= f.select(:addition_id, current_organization.additions_all.where(addition_id: 0).collect {|r| [ r.name, r.id ]}.insert(0,[' ','']),{}, {class: 'form-control input-sm'}) %>
+</div>
+
+<div class="form-group">
+	<%= f.label(:active, 'Статус')%>
+	<%= f.select(:active, [['опубликовано',1],['временно нет',2],['заблокирован',0]], {selected: f.object.new_record? ? 0 : f.object.active, class: 'form-control input-sm' , style: 'width: 150px;'}) %>
+</div> 
+<div class="form-group time_locked_to" style="<%=@product.active != 2 ? 'display:none;' : ''%>">
+	<%= f.label(:locked_to, 'До какого числа отсутвует')%>
+	<div class='input-group date' id="time_locked_to" data-date-format="YYYY-MM-DD HH:mm">
+		<%= f.text_field(:locked_to, value: @product.time_locked_to , class: "form-control")%>
+		<span class="input-group-addon" style="cursor:pointer;"><span class="glyphicon glyphicon-calendar"></span></span>
+	</div>
+</div>
+
+<div class="actions">
+	<input type="submit" id="save_product" class="btn btn-info btn-block" value="Сохранить" />
+	<button type="button" class="btn btn-info btn-block" data-dismiss="modal">Отмена</button>
+</div>
+<% end %>
+
+<script>
+	$(function(){
+		$("#product_category_id [value='"+$('#self_category_id').val()+"']").attr("selected", "selected");
+		$('#time_locked_to').datetimepicker({language: 'ru'});
+	});
+</script>

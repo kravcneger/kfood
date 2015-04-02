@@ -1,0 +1,13 @@
+<% if @product.errors.any? %>
+<%= render partial: 'products/render_errors', locals: {object: @product} %>
+<% else %>
+Backbone.history.fragment = null;
+var route_url = '<%=view_products_path(id: current_organization.id, category_id: @category_id)%>';
+var order = $('#self_category_order').val();
+if(order){
+	route_url = route_url + "/" + order;
+}
+
+window.app_router.navigate(route_url, true);
+$('#myModal').modal('hide');	
+<% end %>

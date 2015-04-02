@@ -1,0 +1,10 @@
+<ul class="top-menu">
+	<li data-no-turbolink class="<%='active' if ['','show'].include?(params[:action])%>" ><%=link_to 'Меню', organization_path(@organization)%></li>
+	<li class="<%='active' if ['info'].include?(params[:action])%>" ><%=link_to 'Информация', info_organization_path(@organization)%></li>
+	<% if available_control? %>
+	<li><a href="<%=url_for(controller: :additions ,id: @organization.id)%>" data-toggle="modal" id="show_additions" data-target="#myModal">Добавки</a></li>
+	<li class="<%='active' if ['admin_orders'].include?(params[:controller])%>" ><a href="<%=orders_path%>">
+		Заказы<b class="unviewed_orders_count"><%if (v_c=current_organization.orders.where(viewed: false).count) > 0%><%="(#{v_c})"%><%end%></b>		
+	</a></li>
+	<% end %>
+</ul>

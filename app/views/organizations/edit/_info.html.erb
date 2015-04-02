@@ -1,0 +1,31 @@
+<div class="form-group">
+  <%= f.label(:avatar, 'Аватар')%>
+  <%= f.file_field(:avatar)%>
+</div>
+<div class="form-group">
+  <%= f.label(:name, 'Название организации*')%>
+  <%= f.text_field(:name, class: 'form-control input-sm')%>
+</div>
+<div class="form-group">
+  <%= f.label(:addresses, 'Адреса')%>
+  <small> (укажите через запятую)</small>
+  <%= f.text_area(:addresses, class: 'form-control input-sm', style: 'height: 50px;', placeholder: 'Адреса')%>
+</div>
+<div class="form-group">
+  <%= f.label(:contacts, 'Контакты')%>
+  <small> (укажите через запятую)</small>
+  <%= f.text_area(:contacts, class: 'form-control input-sm', style: 'height: 50px;', placeholder: 'Контакты')%>
+</div>  
+<div class="form-group">
+  <%= f.label(:additional_information, 'Дополнительная информация')%><small> (Скидки, стоимость доставки в разные пункты)</small>
+  <%= f.text_area(:additional_information, class: 'form-control input-sm', style: 'height: 100px;', placeholder: 'Дополнительная информация')%>
+</div>  
+<div class="form-group">
+  <%= f.label(:description, 'Описание организации')%>
+  <%= f.text_area(:description, class: 'form-control input-sm', style: 'height: 100px;', placeholder: 'Описание организации')%>
+</div>
+<div class="form-group">
+  <%= f.label(:map_code, 'Код яндекс карты')%>
+  <%=link_to 'Для создания карты воспользуйтесь конструктором', 'http://api.yandex.ru/maps/tools/constructor/', target:"_blank" %>
+  <%= f.text_area(:map_code, value: "", class: 'form-control input-sm', style: 'height: 90px;', placeholder: '<script type="text/javascript" charset="utf-8" src="//api-ma.......')%>
+</div>  

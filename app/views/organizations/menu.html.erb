@@ -1,0 +1,9 @@
+<div class="col-xs-12 col-sm-4 col-md-3 sidebar-offcanvas" id="sidebar" style="position: static; height: auto; top: 0px;" role="navigation">
+	<%= render partial: "categories/menu", locals: {categories: @categories}%>	
+</div><!--/span-->
+<div class="col-xs-12 col-sm-8 col-md-9 content">
+	<%= render partial: "categories/products_list"%>
+</div><!--/span-->
+
+<%= render partial: "basket/basket_panel"%>
+<%= render partial: "basket/basket_modal"%>

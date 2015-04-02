@@ -1,0 +1,33 @@
+<% provide(:title, "#{@organization.name}") %>
+<div class="col-xs-12 col-sm-3">
+  <ul class="nav nav-pills nav-stacked">
+    <li<%=' class=active ' if @type == 'info'%>>
+      <%=link_to 'Информация об организации', edit_organization_path(@organization, 'info') %>
+    </li>
+    <li<%=' class=active ' if @type == 'order'%>>
+      <%=link_to 'Настройки заказа', edit_organization_path(@organization, 'order') %>
+    </li>
+    <li<%=' class=active ' if @type == 'notification'%>>
+      <%=link_to 'Настройки оповещения', edit_organization_path(@organization, 'notification') %>
+    </li>
+    <li<%=' class=active ' if @type == 'auth'%>>
+      <%=link_to 'Данные для входа', edit_organization_path(@organization, 'auth') %>
+    </li> 
+    <li<%=' class=active ' if @type == 'social_networks'%>>
+      <%=link_to 'Социальные сети', edit_organization_path(@organization, 'social_networks') %>
+    </li> 
+    <li<%=' class=active ' if @type == 'block'%>>
+      <%=link_to 'Блокировка', edit_organization_path(@organization, 'block') %>
+    </li>             
+  </ul>
+</div>
+
+<div class="col-xs-12 col-sm-6 organization_form_edit">
+    <%= form_for(@organization, html: { id: 'organization_form' }) do |f| %>
+    <%= hidden_field_tag :type, @type%>
+    <%= render partial: 'organizations/edit/' + @type, locals: {f: f} %>
+    <div class="form-group">
+      <input type="submit" class="btn btn-primary" value="Сохранить" /> 
+    </div>
+    <% end %>
+</div>

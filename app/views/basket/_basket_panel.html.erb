@@ -1,0 +1,14 @@
+
+<div style="<%=@basket.price == 0 ? 'display:none;' : ''%>" class="col-xs-12 col-sm-8 col-sm-offset-2 navbar-fixed-bottom" id="basket_panel">
+	<div class="panel-body">
+		<div class="col-xs-8 col-sm-8">
+			<div class="icon">
+			</div>
+			<span>Ваш заказ на <span class="price"><b><%=@basket.price%> + <%=@basket.delivery%></b>руб.</span> за доставку</span>
+		</div>
+		<div class="col-xs-4 col-sm-4">	
+			<a class="btn btn-info btn-small open_basket">Корзина</a>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,10 @@
+<li<% unless category[:item].active%> class="off"<%end%> data-category_id="<%=category[:item].category_id%>" data-id="<%=category[:item].id%>" data-ordering="<%=category[:item].ordering%>"><a data-toggle="tab" href="<%=view_products_path(@organization,category[:item])%>">
+<span class="title"><%=category[:item].name%></span><span class="toolbar"></span>
+<% if category[:children].any? %><span style="float:right;" class="glyphicon glyphicon-chevron-up"></span><%end%>
+</a>
+<% if category[:children].any? %>
+<ul class="nav">
+<%= render partial: 'categories/sub_item', collection: category[:children] %>
+</ul>
+<% end %>
+</li>

@@ -1,0 +1,57 @@
+<%= form_for(@category, remote: true, html: {id: 'category_form'}) do |f| %>
+<div class="form-group errors" style="line-height: 1;">
+
+</div>
+<div class="form-group">
+  <%= f.object.new_record? ? '' : f.hidden_field(:id)%>
+  <%= f.select(:category_id, current_organization.categories_all.where(category_id: 0).where.not(id: @category.id).collect {|r| [ r.name, r.id ] }.insert(0,['Родительская категория',0]),{}, {class: 'form-control input-sm'}) %>
+</div>
+
+<div class="form-group">
+  <%= f.text_field(:name, class: 'form-control input-sm', placeholder: 'название категории')%>
+</div>
+
+<div class="form-group">
+  <%= f.select(:after_category, @category.get_brothers.collect {|r| [ "После #{r.name}", r.id ] }.insert(0,['В самое начало',-1]),{include_blank: 'Порядок'} , {class: 'form-control input-sm', name: "category[after_category]"}) %>
+</div> 
+
+<div class="form-group">
+  <%= f.select(:active, [['опубликовано',true],['не опубликовано',false]], {selected: f.object.new_record? ? false : f.object.active, class: 'form-control input-sm' , style: 'width: 150px;'}) %>
+</div>  
+
+<div class="actions">
+  <button type="button" id="save_category" class="btn btn-info btn-block">Сохранить</button>
+</div>
+<% end %>
+
+<script>
+  $(function(){
+    $('#category_category_id').on('change',function(){
+     var data   = $('#category_form').serializeArray();
+     data.map(function (item) {
+       if (item.name == '_method'){
+         item.value = 'get_brothers';
+       }
+       return item;
+     });
+
+     $.ajax({
+      type: 'post',      
+      dataType: 'json',
+      url: "<%=get_brothers_categories_path%>",
+      data: $.param(data),
+      success: function(response) {
+        $('#category_after_category option:gt(1)').each(function( index, option ) {
+          $(option).remove();
+        });
+        $.each(response,function( index, option ) {
+          $('#category_after_category').append('<option value="'+option.id+'">После '+option.name+'</option>');
+        });
+      },
+      error:  function(xhr, str){
+        alert('Возникла ошибка: ' + xhr.responseCode);
+      }
+    });
+   });
+  });
+</script>

@@ -1,0 +1,78 @@
+<script>
+	window.Organization = {
+		id: <%=@organization.id%>,
+		name: '<%=@organization.name%>',
+		delivery: <%=@organization.delivery%>, 
+		min_delivery: <%=@organization.min_delivery%>, 
+		free_shipping: <%=@organization.free_shipping%>, 
+		organization_path: '<%=organization_path(@organization)%>',
+		add_product_path: '<%=add_product_organization_basket_index_path(@organization)%>',
+		orders_path: '<%=organization_orders_path(@organization)%>',
+
+		organization_basket_index_path: '<%=organization_basket_index_path(@organization)%>',
+		remove_addition_organization_basket_index_path: '<%=remove_addition_organization_basket_index_path(@organization)%>',
+		set_number_product_organization_basket_index_path: '<%=set_number_product_organization_basket_index_path(@organization)%>',
+		clear_organization_basket_index_path: '<%=clear_organization_basket_index_path(@organization)%>',		
+		remove_product_basket_path: '<%=remove_product_organization_basket_index_path(@organization)%>',
+	};
+
+</script>
+
+<% if(!available_control? and !@organization.timetable.is_work?) %>
+<script>
+	$(function(){
+		$.simplyToast("<h5>К сожалению, <%="#{@organization.name}"%> в настоящее время заказы не принимает. Возможен только предварительный заказ.</h5>", "danger", {delay: 0});
+	});
+</script>
+<%end%>
+
+
+<% if available_control? %>
+<%= audio_tag 'sound.mp3', id: 'nitificate_sound' %>
+<script>
+	$(function(){
+		window.unnotified_ids = [];
+		window.notified_interval = 5000; 
+
+		setInterval(function() {
+			$.ajax({
+				url: '<%=statistics_orders_path%>',
+				dataType: 'json',
+				success: function(data){
+					if(data.unviewed_count != 0){
+						$('.unviewed_orders_count').html('('+data.unviewed_count+')');
+					}else{
+						$('.unviewed_orders_count').html('');
+					}
+					if(data.unnotified_ids.length > 0){
+						var ars =  data.unnotified_ids.diff(window.unnotified_ids); 
+						if( ars.length > 0 ){
+							document.getElementById('nitificate_sound').play();
+							$.simplyToast('Новых заказов:' + ars.length, "info", {delay: 0, customClass: "new_order"});
+						}else{
+
+						}
+						window.unnotified_ids = ars;
+					}
+				},
+			});
+
+		}, window.notified_interval); 
+
+		setInterval( function(){
+			if( $('.new_order').length > 0 ){
+				if( $('title').html() == '***' ){
+					$('title').html('Новые заказы');
+				}else{
+					$('title').html('***'); 
+				}
+			}else{
+				$('title').html(Organization.name);
+			}
+		}, 1000);
+
+	});
+
+</script>
+<% end %>
+

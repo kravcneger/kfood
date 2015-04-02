@@ -1,0 +1,17 @@
+<div class="container footer" style="border-top-left-radius: 5px;border-top-right-radius: 5px;height:80px;margin-top:2px;background-color: white;opacity: 1;border: 2px grey solid;border: 2px solid #DDD;">
+	<% if @organization.social_networks %>
+	<div class="text-center center-block">
+		<h5 class="txt-railway:font-color: bold;">- Мы в социальных сетях -</h5>
+		<% if @organization.social_networks["vk"].present? %>
+		<a href="https://vk.com/<%=@organization.social_networks["vk"]%>"><i class="fa fa-vk fa-vk-square fa-3x social-vk social"></i></a>
+		<% end %>
+		<% if @organization.social_networks["fb"].present? %>
+		<a href="https://www.facebook.com/<%=@organization.social_networks["fb"]%>"><i class="fa fa-facebook-square fa-3x social-fb social"></i></a>
+		<% end %>
+		<% if @organization.social_networks["twitter"].present? %>
+		<a href="https://www.twitter.com/<%=@organization.social_networks["twitter"]%>"><i class="fa fa-twitter-square fa-3x social-tw social"></i></a>
+		<% end %>
+	</div>
+	<%end%>
+
+</div>

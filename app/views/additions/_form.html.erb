@@ -1,0 +1,28 @@
+<%= form_for(@addition, remote: true, html: {id: 'addition_form'}) do |f| %>
+<div class="form-group errors" style="line-height: 1;">
+
+</div>
+<div class="form-group">
+  <%= f.object.new_record? ? '' : f.hidden_field(:id)%>
+  <%= f.select(:addition_id, current_organization.additions_all.where(addition_id: 0).where.not(id: @addition.id).collect {|r| [ r.name, r.id ]}.insert(0,['Родительская категория',0]),{}, {class: 'form-control input-sm'}) %>
+</div>
+
+<div class="form-group">
+  <%= f.label(:name, 'название добавки')%>
+  <%= f.text_field(:name, class: 'form-control input-sm', placeholder: 'название добавки')%>
+</div>
+
+<div class="form-group price-row" style="display:<%=@addition.is_sub? ? 'block' : 'none' %>;">
+  <%= f.label(:price, 'стоимость добавки в руб.')%>
+  <%= f.text_field(:price, class: 'form-control input-sm', placeholder: 'стоимость добавки')%>
+</div>
+
+<div class="form-group">
+  <%= f.select(:active, [['опубликовано',true],['не опубликовано',false]], {selected: f.object.new_record? ? false : f.object.active, class: 'form-control input-sm' , style: 'width: 150px;'}) %>
+</div>  
+
+<div class="actions">  
+  <button type="button" id="save_addition" class="btn btn-success btn-block">Сохранить</button>
+  <a href="<%=url_for(controller: :additions , id: current_organization.id)%>" data-toggle="modal" id="close_addition" class="btn btn-info btn-block" data-target="#myModal">Отмена</a>
+</div>
+<% end %>

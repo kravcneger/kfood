@@ -1,0 +1,16 @@
+<div class="col-xs-12 col-md-6 col-md-offset-3">
+	<div class="bs-docs-sidebar navbar navbar-default">	
+		<div style="text-align:center;"><a class="btn btn-success btn-block" data-target="#myModal" id="new_addition" data-toggle="modal" href="<%=new_addition_path%>">Создать добавку</a></div>			  
+		<% if additions.any? %>
+		<div id="additions" class="menu_tree">	
+			<ul class="nav nav-pills nav-stacked bs-docs-sidebar">	
+				<% additions.each_value do |addition| %>
+				<%= render partial: 'additions/item', locals:{ addition: addition } %>
+				<% end %>				
+			</ul>			
+		</div>
+		<% else %>
+		<div style="text-align:center;"><h2><small> Список пуст </small></h2></div>
+		<% end %>
+	</div>
+</div>

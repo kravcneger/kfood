@@ -1,0 +1,7 @@
+$(function(){
+	Kfood.Categories = new Kfood.Collections.CategoriesCollection;
+	Kfood.Products = new Kfood.Collections.ProductsCollection;
+	Kfood.Products.initiale_items();
+	window.menu_dialog = new Kfood.Views.CategoriesDialog({el: $("body")});	
+	window.product_dialog = new Kfood.Views.ProductsDialog({el: $("body")});
+});

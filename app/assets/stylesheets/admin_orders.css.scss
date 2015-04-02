@@ -1,0 +1,26 @@
+table.orders{
+	td.name{
+
+	}
+
+	td.contact_phone{
+
+		&:before{
+			content: '+';
+		}
+
+		&::first-word{
+			color: red;
+		}
+	}
+
+}
+
+
+
+.position{
+	input[type='number']{
+		font-size:11px;width:35px;
+	}
+
+}
